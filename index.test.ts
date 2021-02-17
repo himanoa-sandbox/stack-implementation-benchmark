@@ -72,32 +72,55 @@ class ArrayStack<T> implements Stack<T> {
   }
 }
 
-const onSuccess = (v: Measurement) => {
-  console.log(`Mean: ${v.mean}`)
-}
-
-benchmark.record(["LinkedListStack", "Small"], () => {
-  const stack = new LinkedListStack()
-  stack.push(100)
-  stack.pop()
-}).then(onSuccess)
-
-benchmark.record(["ArrayStack", "Small"], () => {
-  const stack = new ArrayStack()
-  stack.push(100)
-  stack.pop()
-}).then(onSuccess)
-
 const bigLinkedListStack = LinkedListStack.fromArray(new Array(100000).fill(0))
 const bigArrayStack = ArrayStack.fromArray(new Array(100000).fill(0))
 
-benchmark.record(["LinkedListStack", "Big"], () => {
-  bigLinkedListStack.push(1000)
-  bigLinkedListStack.pop()
-}).then(onSuccess)
+describe("Small", () => {
+  it("LinkedListStack", async () => {
+    await benchmark.record(["Small", "LinkedListStack"], () => {
+      const stack = new LinkedListStack()
+      stack.push(100)
+      stack.pop()
+    })
+  })
 
-benchmark.record(["ArrayStack", "Big"], () => {
-  bigArrayStack.push(1000)
-  bigArrayStack.pop()
-}).then(onSuccess)
+  it("ArrayStack", async () => {
+    await benchmark.record(["Small", "ArrayStack"], () => {
+      const stack = new ArrayStack()
+      stack.push(100)
+      stack.pop()
+    })
+  })
+})
 
+describe("Medium", () => {
+  it("LinkedListStack", async () => {
+    await benchmark.record(["Medium", "LinkedListStack"], () => {
+      bigLinkedListStack.push(1000)
+      bigLinkedListStack.pop()
+    })
+  })
+  it("ArrayStack", async () => {
+    await benchmark.record(["Medium", "ArrayStack"], () => {
+      bigArrayStack.push(1000)
+      bigArrayStack.pop()
+    })
+  })
+})
+
+describe("Large", () => {
+  const largeLinkedList = LinkedListStack.fromArray(new Array(10000000).fill(0))
+  const largeArrayList = ArrayStack.fromArray(new Array(10000000).fill(0))
+  it("LinkedListStack", async () => {
+    await benchmark.record(["Large", "LinkedListStack"], () => {
+      largeLinkedList.push(1000)
+      largeLinkedList.pop()
+    })
+  })
+  it("ArrayStack", async () => {
+    await benchmark.record(["Large", "ArrayStack"], () => {
+      largeArrayList.push(1000)
+      largeArrayList.pop()
+    })
+  })
+})
