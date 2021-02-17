@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "himanoa <matsunoappy@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  }
 }
