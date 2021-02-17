@@ -1,0 +1,26 @@
+= 自前のデータ構造 vs V8のArray
+
+Stack を実装するときに自前で最適なデータ構造を定義して、それを用いるのと V8 の Array を使って実装するのだとどちらのほうが早いのかを検証するリポジトリです
+
+== 結果
+
+```
+- - - - - - - - - - - - - - - - - Performance - - - - - - - - - - - - - - - - -
+Small:
+  LinkedListStack:
+    0.00763 ms (+/- 0.00387 ms) from 100 iterations
+  ArrayStack:
+    0.00588 ms (+/- 0.00099 ms) from 100 iterations
+Medium:
+  LinkedListStack:
+    0.00523 ms (+/- 0.00063 ms) from 100 iterations
+  ArrayStack:
+    0.1385 ms (+/- 0.25289 ms) from 100 iterations
+Large:
+  LinkedListStack:
+    0.00396 ms (+/- 0.00054 ms) from 100 iterations
+  ArrayStack:
+    0.00408 ms (+/- 0.00054 ms) from 100 iterations
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Done in 3.67s.
+```
