@@ -72,8 +72,6 @@ class ArrayStack<T> implements Stack<T> {
   }
 }
 
-const bigLinkedListStack = LinkedListStack.fromArray(new Array(100000).fill(0))
-const bigArrayStack = ArrayStack.fromArray(new Array(100000).fill(0))
 
 describe("Small", () => {
   it("LinkedListStack", async () => {
@@ -94,6 +92,8 @@ describe("Small", () => {
 })
 
 describe("Medium", () => {
+  const bigLinkedListStack = LinkedListStack.fromArray(new Array(100000).fill(0))
+  const bigArrayStack = ArrayStack.fromArray(new Array(100000).fill(0))
   it("LinkedListStack", async () => {
     await benchmark.record(["Medium", "LinkedListStack"], () => {
       bigLinkedListStack.push(1000)
